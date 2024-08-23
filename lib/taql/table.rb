@@ -1,22 +1,23 @@
 module Taql
   class Table
-    attr_reader :entries, :io
+    attr_reader :entries
 
-    def initialize(entries, io: $stdout)
+    def initialize(entries)
       @entries = entries
-      @io = io
     end
 
     def print
-      [
-        separator,
-        formatted_headers,
-        separator,
-        formatted_entries,
-        separator
-      ].each do |output|
-        io.puts output
-      end
+      <<~OUTPUT
+        #{separator}
+        #{formatted_headers}
+        #{separator}
+        #{formatted_entries.join("\n")}
+        #{separator}
+      OUTPUT
+    end
+
+    def to_s
+      print
     end
 
     def formatted_entries

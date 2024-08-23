@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "#{spec.homepage}/CHANGELOG.md"
 
-  spec.files = Dir["*.gemspec", "*.{md,txt}", "Rakefile", "{bin,lib}/**/*"]
+  spec.files = Dir["*.gemspec", "*.{md,txt}", "Rakefile", "{bin,exe,lib}/**/*"]
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

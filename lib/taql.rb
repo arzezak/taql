@@ -1,3 +1,4 @@
+require_relative "taql/cli"
 require_relative "taql/table"
 require_relative "taql/version"
 
@@ -6,7 +7,7 @@ module Taql
 
   def self.execute(query)
     ActiveRecord::Base.connection.execute(query).tap do |result|
-      Table.new(result.entries).print
+      $stdout.puts Table.new(result.entries)
     end
   end
 end

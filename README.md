@@ -19,6 +19,20 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ```ruby
+>> Taql.execute('select id, email from users order by created at limit 3').pluck("email")
+   (1.2ms)  select id, email from users limit 3
++----+---------------------+
+| ID | EMAIL               |
++----+---------------------+
+| 1  | alice@example.com   |
+| 2  | bob@example.com     |
+| 3  | charlie@example.com |
++----+---------------------+
+=> ["alice@example.com", "bob@example.com", "charlie@example.com"]
+
+```
+
+```ruby
 >> Taql.execute("select * from schema_migrations limit 10")
    (0.7ms)  select * from schema_migrations limit 10
 +----------------+

@@ -2,12 +2,11 @@ require "test_helper"
 
 class TestTable < Minitest::Test
   def setup
-    @io = StringIO.new
     @table = Taql::Table.new([
       {"name" => "Alice", "age" => 30},
       {"name" => "Bob", "age" => 25},
       {"name" => "Charlie", "age" => 35}
-    ], io: @io)
+    ])
   end
 
   def test_that_it_outputs_a_table
@@ -21,9 +20,7 @@ class TestTable < Minitest::Test
       +---------+-----+
     OUTPUT
 
-    @table.print
-
-    assert_equal(output, @io.string)
+    assert_output(output) { puts @table.print }
   end
 
   def test_that_it_returns_headers
