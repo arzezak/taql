@@ -19,6 +19,15 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ```sh
+~/Developer/writebook % taql "select id, title, author, slug from books"
++----+----------------------+-----------+----------------------+
+| ID | TITLE                | AUTHOR    | SLUG                 |
++----+----------------------+-----------+----------------------+
+| 1  | The Writebook Manual | 37signals | the-writebook-manual |
++----+----------------------+-----------+----------------------+
+```
+
+```sh
 ~/Developer/check-in (main) % taql "select id, first_name, last_name, created_at, updated_at from guests limit 3"
 +----+------------+------------+-------------------------+-------------------------+
 | ID | FIRST_NAME | LAST_NAME  | CREATED_AT              | UPDATED_AT              |
