@@ -18,6 +18,26 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
+```sh
+~/Developer/check-in (main) % taql "select id, first_name, last_name, created_at, updated_at from guests limit 3"
++----+------------+------------+-------------------------+-------------------------+
+| ID | FIRST_NAME | LAST_NAME  | CREATED_AT              | UPDATED_AT              |
++----+------------+------------+-------------------------+-------------------------+
+| 1  | Alejandro  | Bustamante | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
+| 2  | Reina      | Zelaya     | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
+| 3  | Carla      | Barrios    | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
++----+------------+------------+-------------------------+-------------------------+
+```
+
+```sh
+~/Developer/check-in (main|!|+) % taql "select count(id) as guest_count from guests"
++-------------+
+| GUEST_COUNT |
++-------------+
+| 3721        |
++-------------+
+```
+
 ```ruby
 >> Taql.execute('select id, email from users order by created at limit 3').pluck("email")
    (1.2ms)  select id, email from users limit 3
@@ -29,27 +49,19 @@ If bundler is not being used to manage dependencies, install the gem by executin
 | 3  | charlie@example.com |
 +----+---------------------+
 => ["alice@example.com", "bob@example.com", "charlie@example.com"]
-
 ```
 
 ```ruby
->> Taql.execute("select * from schema_migrations limit 10")
-   (0.7ms)  select * from schema_migrations limit 10
+>> Taql.execute("select * from schema_migrations limit 3")
+   (0.7ms)  select * from schema_migrations limit 3
 +----------------+
 | VERSION        |
 +----------------+
 | 20240819175830 |
 | 20240815131806 |
 | 20240815131747 |
-| 20240814161544 |
-| 20240814161045 |
-| 20240813193038 |
-| 20240806190918 |
-| 20240729170920 |
-| 20240724221738 |
-| 20240724220458 |
 +----------------+
-=> #<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=10 nfields=1 cmd_tuples=10>
+=> #<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=3 nfields=1 cmd_tuples=3>
 ```
 
 ## Development
