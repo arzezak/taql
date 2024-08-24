@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Ariel Rzezak"]
   spec.email = ["arzezak@gmail.com"]
 
-  spec.summary = "Tableize SQL queries on your Rails console"
-  spec.description = "Taql allows you to pretty print SQL on your Rails console."
+  spec.summary = "Tableize Rails SQL queries"
+  spec.description = "Taql allows you to pretty print SQL table queries in Rails."
   spec.homepage = "https://github.com/arzezak/taql"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0.0"
