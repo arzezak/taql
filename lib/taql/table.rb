@@ -1,82 +1,68 @@
 module Taql
   class Table
-    attr_reader :entries
+    DASH = "-".freeze
+    PLUS = "+".freeze
+    SPACE = " ".freeze
+    VERTICAL_BAR = "|".freeze
 
     def initialize(entries)
-      @entries = entries
+      @entries = entries.map { it.transform_values(&:to_s) }
     end
 
-    def print
-      <<~OUTPUT
-        #{separator}
-        #{formatted_headers}
-        #{separator}
-        #{formatted_entries.join("\n")}
-        #{separator}
-      OUTPUT
+    def body
+      entries.map(&:values)
     end
 
-    def to_s
-      print
-    end
-
-    def formatted_entries
-      entries.each_with_object([]) do |entry, result|
-        individual_entry = entry
-          .map { |key, value| value.to_s.ljust(rows_max_length[key]) }
-          .join(" | ")
-
-        result << "| #{individual_entry} |"
+    def columns
+      headers.map do |header|
+        [header, *entries.map { |entry| entry[header] }]
       end
-    end
-
-    def formatted_headers
-      output = headers.map do |header|
-        header.upcase.ljust(rows_max_length[header])
-      end.join(" | ")
-
-      "| #{output} |"
     end
 
     def headers
-      first.keys
+      entries.map(&:keys).uniq.flatten
+    end
+
+    def print
+      output if entries.any?
     end
 
     def rows
-      entries.each_with_object(
-        Hash.new { |hash, key| hash[key] = [] }
-      ) do |entry, result|
-        entry.each do |header, value|
-          result[header] << value
-        end
-      end
-    end
-
-    def rows_max_length
-      rows_with_headers.each_with_object({}) do |(key, values), result|
-        result[key] = values.map { it.to_s.length }.max
-      end
-    end
-
-    def rows_with_headers
-      headers.each_with_object({}) do |column, result|
-        result[column] = rows[column].unshift(column)
-      end
-    end
-
-    def separator
-      line = rows_with_headers.values.map do |values|
-        length = values.map { it.to_s.length }.max + 2
-        Array.new(length, "-").join
-      end.join("+")
-
-      "+#{line}+"
+      [headers, *body]
     end
 
     private
 
-    def first
-      entries.first
+    attr_reader :entries
+
+    def formatted(segments)
+      segments.map do |segment|
+        cell_index = segments.index(segment)
+        max_length = columns[cell_index].map(&:length).max
+        [SPACE, segment.ljust(max_length), SPACE].join
+      end.then do |segments|
+        [VERTICAL_BAR, segments.join(VERTICAL_BAR), VERTICAL_BAR].join
+      end
+    end
+
+    def output
+      <<~OUTPUT
+        #{separator}
+        #{formatted(headers.map(&:upcase))}
+        #{separator}
+        #{body.map(&method(:formatted)).join("\n")}
+        #{separator}
+      OUTPUT
+    end
+
+    def separator
+      columns.map do |column|
+        column_index = columns.index(column)
+        max_length = columns[column_index].map(&:length).max
+        Array.new(max_length + 2, DASH).join
+      end.then do |columns|
+        [PLUS, columns.join(PLUS), PLUS].join
+      end
     end
   end
 end
