@@ -7,7 +7,9 @@ module Taql
 
   def self.execute(query)
     ActiveRecord::Base.connection.execute(query).tap do |result|
-      $stdout.puts Table.new(result.entries)
+      if (results = result.entries).any?
+        $stdout.puts Table.new(results)
+      end
     end
   end
 end
