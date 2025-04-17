@@ -28,7 +28,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```
 
 ```sh
-~/Developer/check-in (main) % taql "select id, first_name, last_name, created_at, updated_at from guests limit 3"
+~/Developer/check-in % taql "select id, first_name, last_name, created_at, updated_at from guests limit 3"
 +----+------------+------------+-------------------------+-------------------------+
 | ID | FIRST_NAME | LAST_NAME  | CREATED_AT              | UPDATED_AT              |
 +----+------------+------------+-------------------------+-------------------------+
@@ -39,7 +39,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```
 
 ```sh
-~/Developer/check-in (main|!|+) % taql "select count(id) as guest_count from guests"
+~/Developer/check-in % taql "select count(id) as guest_count from guests"
 +-------------+
 | GUEST_COUNT |
 +-------------+
@@ -48,7 +48,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```
 
 ```ruby
->> Taql.execute('select id, email from users order by created at limit 3').pluck("email")
+>> Taql.execute("select id, email from users order by created at limit 3").pluck("email")
    (1.2ms)  select id, email from users limit 3
 +----+---------------------+
 | ID | EMAIL               |
