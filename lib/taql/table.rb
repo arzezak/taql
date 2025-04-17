@@ -6,7 +6,7 @@ module Taql
     VERTICAL_BAR = "|".freeze
 
     def initialize(entries)
-      @entries = entries.map { it.transform_values(&:to_s) }
+      @entries = entries.map { |entry| entry.transform_values(&:to_s) }
     end
 
     def body
@@ -36,7 +36,7 @@ module Taql
     attr_reader :entries
 
     def column_widths
-      columns.map { it.map(&:length).max }
+      columns.map { |column| column.map(&:length).max }
     end
 
     def formatted(segments)
