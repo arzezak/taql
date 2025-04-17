@@ -35,10 +35,14 @@ module Taql
 
     attr_reader :entries
 
+    def column_widths
+      columns.map { it.map(&:length).max }
+    end
+
     def formatted(segments)
       segments.map do |segment|
         cell_index = segments.index(segment)
-        max_length = columns[cell_index].map(&:length).max
+        max_length = column_widths[cell_index]
         [SPACE, segment.ljust(max_length), SPACE].join
       end.then do |segments|
         [VERTICAL_BAR, segments.join(VERTICAL_BAR), VERTICAL_BAR].join
@@ -58,7 +62,7 @@ module Taql
     def separator
       columns.map do |column|
         column_index = columns.index(column)
-        max_length = columns[column_index].map(&:length).max
+        max_length = column_widths[column_index]
         Array.new(max_length + 2, DASH).join
       end.then do |columns|
         [PLUS, columns.join(PLUS), PLUS].join
