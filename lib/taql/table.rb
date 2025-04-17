@@ -54,7 +54,7 @@ module Taql
 
     def rows_max_length
       rows_with_headers.each_with_object({}) do |(key, values), result|
-        result[key] = values.map { _1.to_s.length }.max
+        result[key] = values.map { it.to_s.length }.max
       end
     end
 
@@ -66,7 +66,7 @@ module Taql
 
     def separator
       line = rows_with_headers.values.map do |values|
-        length = values.map { _1.to_s.length }.max + 2
+        length = values.map { it.to_s.length }.max + 2
         Array.new(length, "-").join
       end.join("+")
 
