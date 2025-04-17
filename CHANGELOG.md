@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Map with index
+
 ## [0.2.3] - 2025-04-17
 
 - Refactor table code
