@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Inject connection
+
 ## [0.2.4] - 2025-04-17
 
 - Add back missing alias
