@@ -64,5 +64,7 @@ module Taql
         [PLUS, columns.join(PLUS), PLUS].join
       end
     end
+
+    alias_method :to_s, :print
   end
 end
