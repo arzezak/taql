@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 - Inject connection
+- Add irb to Gemfile
+- Update README
 
 ## [0.2.4] - 2025-04-17
 
