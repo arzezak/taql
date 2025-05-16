@@ -44,9 +44,23 @@ class TestTable < Minitest::Test
       +---------+-----+
     OUTPUT
 
-    @table.print
-
     assert_output(output) { puts @table.print }
+  end
+
+  def test_that_it_outputs_a_markdown_table
+    output = <<~OUTPUT
+      | NAME    | AGE |
+      |---------|-----|
+      | Alice   | 30  |
+      | Bob     | 25  |
+      | Charlie | 35  |
+    OUTPUT
+
+    @table.markdown = true
+
+    assert_output(output) do
+      puts @table.print
+    end
   end
 
   def test_that_it_renders_nothing

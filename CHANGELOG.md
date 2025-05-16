@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Added support for Markdown
 - Inject connection
 - Add irb to Gemfile
 - Update README
