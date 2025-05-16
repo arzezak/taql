@@ -6,7 +6,7 @@ class TestTaql < Minitest::Test
   end
 
   def test_that_it_outputs_a_table
-    query = "select name, age from users"
+    query = "SELECT name, age FROM users"
     results = [
       {"name" => "Alice", "age" => 30},
       {"name" => "Bob", "age" => 25},
@@ -14,10 +14,12 @@ class TestTaql < Minitest::Test
     ]
     connection = Minitest::Mock.new
     connection.expect(:execute, results, [query])
-    expected_output = Taql::Table.new(results).print
+    table = Taql::Table.new(results)
 
-    assert_output(expected_output) do
-      Taql.execute(query, connection: connection)
+    stdout, _stderr = capture_io do
+      Taql.execute(query, {}, connection: connection)
     end
+
+    assert_equal table.print, stdout.chomp
   end
 end

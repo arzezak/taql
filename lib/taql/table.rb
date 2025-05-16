@@ -5,8 +5,11 @@ module Taql
     SPACE = " ".freeze
     VERTICAL_BAR = "|".freeze
 
-    def initialize(entries)
+    attr_accessor :markdown
+
+    def initialize(entries, markdown:)
       @entries = entries.map { |entry| entry.transform_values(&:to_s) }
+      @markdown = markdown
     end
 
     def body
@@ -35,8 +38,16 @@ module Taql
 
     attr_reader :entries
 
+    def border
+      separator unless markdown
+    end
+
     def column_widths
       columns.map { |column| column.map(&:length).max }
+    end
+
+    def edge
+      markdown ? VERTICAL_BAR : PLUS
     end
 
     def formatted(segments)
@@ -48,20 +59,20 @@ module Taql
     end
 
     def output
-      <<~OUTPUT
-        #{separator}
-        #{formatted(headers.map(&:upcase))}
-        #{separator}
-        #{body.map(&method(:formatted)).join("\n")}
-        #{separator}
-      OUTPUT
+      [
+        border,
+        formatted(headers.map(&:upcase)),
+        separator,
+        body.map(&method(:formatted)).join("\n"),
+        border
+      ].compact.join("\n")
     end
 
     def separator
       columns.map.with_index do |column, index|
         Array.new(column_widths[index] + 2, DASH).join
       end.then do |columns|
-        [PLUS, columns.join(PLUS), PLUS].join
+        [edge, columns.join(edge), edge].join
       end
     end
 

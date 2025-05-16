@@ -27,16 +27,18 @@ If bundler is not being used to manage dependencies, install the gem by executin
 +----+----------------------+-----------+----------------------+
 ```
 
+Use the `--markdown` (or `--md`) flag to generate Markdown output:
+
 ```sh
-~/Developer/check-in % taql "select id, first_name, last_name, created_at, updated_at from guests limit 3"
-+----+------------+------------+-------------------------+-------------------------+
+~/Developer/check-in % taql --markdown "select id, first_name, last_name, created_at, updated_at from guests limit 3"
 | ID | FIRST_NAME | LAST_NAME  | CREATED_AT              | UPDATED_AT              |
-+----+------------+------------+-------------------------+-------------------------+
+|----|------------|------------|-------------------------|-------------------------|
 | 1  | Alejandro  | Bustamante | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
 | 2  | Reina      | Zelaya     | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
 | 3  | Carla      | Barrios    | 2023-07-26 16:26:21 UTC | 2023-07-26 16:26:21 UTC |
-+----+------------+------------+-------------------------+-------------------------+
 ```
+
+Any valid SQL SELECT statement can be executed:
 
 ```sh
 ~/Developer/check-in % taql "select count(id) as guest_count from guests"
@@ -46,6 +48,8 @@ If bundler is not being used to manage dependencies, install the gem by executin
 | 3721        |
 +-------------+
 ```
+
+Within a console:
 
 ```ruby
 >> Taql.execute("select id, email from users order by created at limit 3").pluck("email")
@@ -60,6 +64,8 @@ If bundler is not being used to manage dependencies, install the gem by executin
 => ["alice@example.com", "bob@example.com", "charlie@example.com"]
 ```
 
+The return value is a native PG::Result object, which supports mapping or extracting data as shown in the example above.
+
 ```ruby
 >> Taql.execute("select * from schema_migrations limit 3")
    (0.7ms)  select * from schema_migrations limit 3
@@ -70,7 +76,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 | 20240815131806 |
 | 20240815131747 |
 +----------------+
-=> #<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=3 nfields=1 cmd_tuples=3>
+=> \#<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=3 nfields=1 cmd_tuples=3>
 ```
 
 ## Development
