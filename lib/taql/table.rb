@@ -7,7 +7,7 @@ module Taql
 
     attr_accessor :markdown
 
-    def initialize(entries, markdown:)
+    def initialize(entries, markdown: false)
       @entries = entries.map { |entry| entry.transform_values(&:to_s) }
       @markdown = markdown
     end
