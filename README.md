@@ -27,7 +27,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 +----+----------------------+-----------+----------------------+
 ```
 
-Use the `--markdown` (or `--md`) flag to generate Markdown output:
+Use the `--markdown` (or `-m`) flag to generate Markdown output:
 
 ```sh
 ~/Developer/check-in % taql --markdown "select id, first_name, last_name, created_at, updated_at from guests limit 3"
