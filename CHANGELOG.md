@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.6] - 2025-05-17
+
+- Fix version
+
 ## [0.2.5] - 2025-05-17
 
 - Added support for Markdown
