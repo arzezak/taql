@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.7] - 2025-06-27
+
+- Provide default options
+
 ## [0.2.6] - 2025-05-17
 
 - Fix version
