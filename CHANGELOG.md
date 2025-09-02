@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.7] - 2025-09-01
+
+- Add Railtie
+
 ## [0.2.7] - 2025-06-27
 
 - Provide default options
