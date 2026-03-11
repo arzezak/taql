@@ -69,4 +69,12 @@ class TestTable < Minitest::Test
     assert_output("\n") { puts empty_table.print }
   end
 
+  def test_headers_with_heterogeneous_entries
+    table = Taql::Table.new([
+      {"name" => "Alice", "age" => 30},
+      {"name" => "Bob", "email" => "bob@example.com"}
+    ])
+
+    assert_equal ["name", "age", "email"], table.headers
+  end
 end
