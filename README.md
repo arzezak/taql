@@ -27,6 +27,13 @@ $ gem install taql
 +----+----------------------+-----------+----------------------+
 ```
 
+Use `--version` (or `-v`) to check the installed version:
+
+```sh
+$ taql --version
+taql 0.4.0
+```
+
 Use the `--markdown` (or `-m`) flag to generate Markdown output:
 
 ```sh
@@ -52,7 +59,7 @@ Any valid SQL SELECT statement can be executed:
 Within a console:
 
 ```ruby
->> Taql.execute("select id, email from users order by created at limit 3").pluck("email")
+>> Taql.execute("select id, email from users order by created_at limit 3").pluck("email")
    (1.2ms)  select id, email from users limit 3
 +----+---------------------+
 | ID | EMAIL               |
@@ -91,7 +98,7 @@ To release a new version, update the version number in `version.rb`, and then ru
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/taql. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/taql/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/arzezak/taql. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/arzezak/taql/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -99,4 +106,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Taql project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/taql/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Taql project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/arzezak/taql/blob/main/CODE_OF_CONDUCT.md).
