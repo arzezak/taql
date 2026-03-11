@@ -8,6 +8,7 @@ module Taql
       @argv = argv
       @options = {markdown: false}
       @query = parse!
+
       raise ArgumentError, "Usage: taql [--markdown] QUERY" if @query.empty?
     end
 
@@ -26,6 +27,8 @@ module Taql
     def parse!
       OptionParser.new do |parser|
         parser.on("-m", "--markdown", TrueClass, "Output table in Markdown")
+        parser.program_name = "taql"
+        parser.version = Taql::VERSION
       end.parse!(@argv, into: options)
     end
 

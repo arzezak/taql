@@ -18,4 +18,10 @@ class TestCli < Minitest::Test
   def test_that_it_raises_without_query
     assert_raises(ArgumentError) { Taql::Cli.new([]) }
   end
+
+  def test_that_it_prints_version
+    assert_output("taql #{Taql::VERSION}\n") do
+      assert_raises(SystemExit) { Taql::Cli.new(["--version"]) }
+    end
+  end
 end
