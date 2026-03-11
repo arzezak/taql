@@ -11,8 +11,11 @@ module Taql
     end
 
     def self.connection
-      pool = ActiveRecord::Base.connection_pool
       pool.respond_to?(:lease_connection) ? pool.lease_connection : pool.connection
+    end
+
+    def self.pool
+      ActiveRecord::Base.connection_pool
     end
   end
 end
