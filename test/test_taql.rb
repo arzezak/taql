@@ -22,4 +22,8 @@ class TestTaql < Minitest::Test
 
     assert_equal table.print, stdout.chomp
   end
+
+  def test_that_it_raises_without_connection
+    assert_raises(RuntimeError) { Taql.execute("SELECT 1") }
+  end
 end
