@@ -77,4 +77,12 @@ class TestTable < Minitest::Test
 
     assert_equal ["name", "age", "email"], table.headers
   end
+
+  def test_table_width_calculation
+    table = Taql::Table.new([
+      {"name" => "Alice", "age" => 30}
+    ])
+
+    assert_equal 15, table.table_width
+  end
 end
