@@ -8,6 +8,7 @@ module Taql
       @argv = argv
       @options = {markdown: false}
       @query = parse!
+      raise ArgumentError, "Usage: taql [--markdown] QUERY" if @query.empty?
     end
 
     def run

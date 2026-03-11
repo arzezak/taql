@@ -14,4 +14,8 @@ class TestCli < Minitest::Test
     assert_equal "SELECT * FROM users", *cli.query
     assert_equal true, cli.options[:markdown]
   end
+
+  def test_that_it_raises_without_query
+    assert_raises(ArgumentError) { Taql::Cli.new([]) }
+  end
 end
