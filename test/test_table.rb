@@ -68,4 +68,5 @@ class TestTable < Minitest::Test
 
     assert_output("\n") { puts empty_table.print }
   end
+
 end

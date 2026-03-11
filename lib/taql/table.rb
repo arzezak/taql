@@ -17,13 +17,13 @@ module Taql
     end
 
     def columns
-      headers.map do |header|
+      @columns ||= headers.map do |header|
         [header, *entries.map { |entry| entry[header] }]
       end
     end
 
     def headers
-      entries.map(&:keys).uniq.flatten
+      @headers ||= entries.flat_map(&:keys).uniq
     end
 
     def print
@@ -43,7 +43,7 @@ module Taql
     end
 
     def column_widths
-      columns.map { |column| column.map(&:length).max }
+      @column_widths ||= columns.map { |column| column.map(&:length).max }
     end
 
     def edge
