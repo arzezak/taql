@@ -6,7 +6,7 @@ module Taql
 
     initializer "taql.initialize" do
       ActiveSupport.on_load(:active_record) do
-        Taql.instance_variable_set(:@default_connection, method(:connection))
+        Taql.default_connection = method(:connection)
       end
     end
 

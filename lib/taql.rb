@@ -5,6 +5,8 @@ require_relative "taql/railtie" if defined?(Rails)
 
 module Taql
   class << self
+    attr_writer :default_connection
+
     def execute(query, options = {}, connection: nil)
       (connection || default_connection).execute(query).tap do |result|
         if (results = result.entries).any?
