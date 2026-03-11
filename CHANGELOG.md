@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.0] - 2026-03-11
+
+- Fix CLI to use passed argv instead of global ARGV
+- Fix CLI to use ActiveRecord connection directly after booting Rails
+- Memoize Table headers, columns, and column_widths
+- Fix headers deduplication for heterogeneous entries
+- Raise error when CLI is invoked without a query
+- Add --version flag to CLI
+- Support Rails 7.2+ lease_connection
+
 ## [0.3.7] - 2025-09-01
 
 - Add Railtie
