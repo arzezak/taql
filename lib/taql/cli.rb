@@ -5,6 +5,7 @@ module Taql
     attr_reader :options, :query
 
     def initialize(argv)
+      @argv = argv
       @options = {markdown: false}
       @query = parse!
     end
@@ -24,7 +25,7 @@ module Taql
     def parse!
       OptionParser.new do |parser|
         parser.on("-m", "--markdown", TrueClass, "Output table in Markdown")
-      end.parse!(into: options)
+      end.parse!(@argv, into: options)
     end
 
     def silence
