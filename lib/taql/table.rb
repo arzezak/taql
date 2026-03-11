@@ -12,6 +12,10 @@ module Taql
       @markdown = markdown
     end
 
+    def table_width
+      column_widths.sum + (3 * columns.count) + 1
+    end
+
     def body
       entries.map(&:values)
     end

@@ -86,6 +86,10 @@ The return value is a native PG::Result object, which supports mapping or extrac
 => #<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=3 nfields=1 cmd_tuples=3>
 ```
 
+## TODO
+
+- [ ] `--vertical` / `--horizontal` CLI flags to override auto-detection
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
