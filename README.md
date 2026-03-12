@@ -86,6 +86,17 @@ The return value is a native PG::Result object, which supports mapping or extrac
 => #<PG::Result:0x000000012ebf6a38 status=PGRES_TUPLES_OK ntuples=3 nfields=1 cmd_tuples=3>
 ```
 
+When results exceed terminal width, output automatically switches to a vertical list format:
+
+```
+----------------------------------------
+              ID | 1
+           ADMIN | false
+           EMAIL | alice@example.com
+      CREATED_AT | 2021-10-01 00:00:00 UTC
+----------------------------------------
+```
+
 ## TODO
 
 - [ ] `--list` / `--table` CLI flags to override auto-detection

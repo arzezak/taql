@@ -22,12 +22,13 @@ bin/setup                 # Install dependencies
 
 - `lib/taql.rb` — Main module; `.execute(query, options, connection:)` entry point
 - `lib/taql/table.rb` — Table formatting (ASCII borders + Markdown mode); handles column width calculation
+- `lib/taql/list.rb` — Vertical list formatting; used when table exceeds terminal width
 - `lib/taql/cli.rb` — CLI parser (`--markdown/-m` flag); loads Rails env, calls `Taql.execute`
 - `lib/taql/railtie.rb` — Rails integration; sets `@default_connection` from ActiveRecord pool
 - `exe/taql` — CLI executable entry point
 
-**Flow:** CLI loads Rails environment → parses args → `Taql.execute` uses ActiveRecord connection (from Railtie or explicit) → wraps result in `Table` → prints formatted output.
+**Flow:** CLI loads Rails environment → parses args → `Taql.execute` uses ActiveRecord connection (from Railtie or explicit) → auto-selects `Table` or `List` based on terminal width → prints formatted output.
 
 ## Testing
 
-Tests use Minitest with mocked database connections. Test files mirror lib structure: `test_taql.rb`, `test_table.rb`, `test_cli.rb`. CI runs on Ruby 3.4 via GitHub Actions.
+Tests use Minitest with mocked database connections. Test files mirror lib structure: `test_taql.rb`, `test_table.rb`, `test_list.rb`, `test_cli.rb`. CI runs on Ruby 3.4 via GitHub Actions.
