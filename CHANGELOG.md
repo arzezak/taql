@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0] - 2026-03-11
+
+- Auto-switch to vertical list layout when table exceeds terminal width
+- Add List class for vertical output formatting
+- Right-align headers in vertical list output
+
 ## [0.4.0] - 2026-03-11
 
 - Fix CLI to use passed argv instead of global ARGV

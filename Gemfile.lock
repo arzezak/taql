@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    taql (0.4.0)
+    taql (0.5.0)
 
 GEM
   remote: https://rubygems.org/
