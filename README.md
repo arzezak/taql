@@ -88,7 +88,7 @@ The return value is a native PG::Result object, which supports mapping or extrac
 
 ## TODO
 
-- [ ] `--vertical` / `--horizontal` CLI flags to override auto-detection
+- [ ] `--list` / `--table` CLI flags to override auto-detection
 
 ## Development
 
