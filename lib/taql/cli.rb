@@ -15,7 +15,7 @@ module Taql
     def run
       silence { require environment_path }
 
-      Taql.execute(*query, options, connection: ActiveRecord::Base.connection)
+      Taql.execute(*query, options, connection: Taql.active_record_connection)
     end
 
     private

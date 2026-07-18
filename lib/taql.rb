@@ -17,19 +17,26 @@ module Taql
       end
     end
 
+    def active_record_connection
+      pool = ActiveRecord::Base.connection_pool
+      pool.respond_to?(:lease_connection) ? pool.lease_connection : pool.connection
+    end
+
     private
 
-    def formatter(results, markdown: false)
+    def formatter(results, markdown:)
       table = Table.new(results, markdown: markdown)
-      if !markdown && table.table_width > terminal_width
-        List.new(results, terminal_width: terminal_width)
+      width = terminal_width
+
+      if !markdown && width && table.table_width > width
+        List.new(results, terminal_width: width)
       else
         table
       end
     end
 
     def terminal_width
-      IO.console&.winsize&.last || Float::INFINITY
+      IO.console&.winsize&.last
     end
 
     def default_connection
