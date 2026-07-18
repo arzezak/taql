@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0] - 2026-07-18
+
+- Extract shared `Formatter` base class from `Table` and `List`
+- Unify ActiveRecord connection handling in `Taql.active_record_connection`
+- Fix CLI to avoid the Rails 7.2+ `connection` deprecation warning
+- Remove unused `Table#rows`, `#columns`, and `markdown` writer
+
 ## [0.5.0] - 2026-03-11
 
 - Auto-switch to vertical list layout when table exceeds terminal width
