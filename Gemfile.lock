@@ -80,6 +80,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.26.0)
     stringio (3.2.0)
+    swarf (0.2.0)
     tsort (0.2.0)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
@@ -95,6 +96,7 @@ DEPENDENCIES
   rake (~> 13.0)
   ruby-lsp
   standard
+  swarf
   taql!
 
 BUNDLED WITH

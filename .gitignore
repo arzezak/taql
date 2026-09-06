@@ -1,4 +1,6 @@
 /.bundle/
+/.claude/
+/.swarf/
 /.yardoc
 /_yardoc/
 /coverage/
